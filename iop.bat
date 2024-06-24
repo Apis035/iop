@@ -183,13 +183,13 @@ setlocal
 	)
 exit /b
 
-:generate-build-command [opt]
+:generate-odin-command [mode] [opt]
 setlocal
 	set sourceDir=.
 	set raylibShared=
 	if !CreateSrc! == true set sourceDir=src
 	if !ProjectType! == raylibDynamic set raylibShared=-define:RAYLIB_SHARED=true
-	set result=odin build !sourceDir! -out:!ProjectName!.exe -o:%~1 !raylibShared!
+	set result=odin %~1 !sourceDir! -out:!ProjectName!.exe -o:%~2 !raylibShared!
 endlocal & (
 	set result=%result%
 )
@@ -197,14 +197,14 @@ exit /b
 
 :create-build-script
 	echo %r%* %y%Creating build.bat script...
-	call :generate-build-command speed
+	call :generate-odin-command build speed
 	>> build.bat echo !result!
 exit /b
 
 :create-sublime-project
 setlocal
 	echo %r%* %y%Creating Sublime Text project...
-	call :generate-build-command none
+	call :generate-odin-command run none
 	for %%` in (
 		"{"
 		"	'folders':"
