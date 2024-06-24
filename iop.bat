@@ -9,10 +9,10 @@ setlocal EnableDelayedExpansion
 	set r=[0m
 	set i=[91m
 	set o=[94m
-	set p=[96m
+	set p=[33m
 	set ri=[101;30m
 	set ro=[104;30m
-	set rp=[106;30m
+	set rp=[43;30m
 	set g=[90m
 	set y=[33m
 	set yb=[43;97m
